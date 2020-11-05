@@ -7,7 +7,8 @@ include(UseLATEX)
 
 add_subdirectory(image/)
 
-add_latex_document(tym-cv.tex
+add_latex_document(tym-cv.tex 
+  DEPENDS tym-cv.cls 
   INCLUDE_DIRECTORIES ${PROJECT_SOURCE_DIR}/image
   FORCE_PDF
 )
