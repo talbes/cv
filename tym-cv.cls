@@ -10,7 +10,7 @@
 % load packages
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{libertine} %libertine
-% \RequirePackage[T1]{fontenc}
+\RequirePackage[T1]{fontenc}
 \renewcommand\familydefault{\sfdefault}
 \RequirePackage[english]{babel}
 \RequirePackage[cm]{fullpage}
@@ -25,6 +25,7 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{fontawesome}
 \RequirePackage{longtable}
+\RequirePackage{tabularx}
 \RequirePackage{array}
 \RequirePackage{enumitem}
 \RequirePackage{xcolor}
@@ -50,7 +51,7 @@
 \newcommand*{\lastname}[1]{\def\@lastname{#1}}
 
 % define jobtitle
-\newcommand*{\jobinfo}[1]{\def\@jobinfo{#1}}
+\newcommand*{\mtitle}[1]{\def\@mtitle{#1}}
 
 % define picture
 \newcommand*{\photo}[2]{\def\@photo{#2}\def\@photodiameter{#1}}
@@ -86,7 +87,7 @@
 \def\@maketitle{
     \begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}
         \user{\@firstname}{\@lastname}\\
-        \large{\@jobinfo}
+        \large{\@mtitle}
         \bigskip\\
         \small{\@socialinfo}
     \end{minipage}
@@ -96,6 +97,23 @@
     \bigskip
 }
 \makeatother
+
+% define footer
+\newcommand*{\makefooter}[3]{%
+    \fancyfoot{}
+    \fancyfoot[L]{#1}
+    \fancyfoot[C]{#2}
+    \fancyfoot[R]{#3}
+}
+
+\newcommand*{\cvitem}[4][.05em]{%
+    \noindent%
+    \begin{tabularx}{\textwidth}{p{#3} X}
+        {\textbf{#2}} & {#4} 
+    \end{tabularx}%
+    \par%\addspace{#1}%\addspace not working, why?
+}
+
 
 % skills environment
 \newenvironment{skills}{%
@@ -107,12 +125,4 @@
 }
 \newcommand*\skillsentry[2]{
   \textbf{#1} &   #2\\ 
-}
-
-% define footer
-\newcommand*{\makefooter}[3]{%
-    \fancyfoot{}
-    \fancyfoot[L]{#1}
-    \fancyfoot[C]{#2}
-    \fancyfoot[R]{#3}
 }
