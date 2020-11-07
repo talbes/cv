@@ -1,42 +1,103 @@
-\documentclass{tym-cv}
+\documentclass[12pt]{tym-cv}
 
 \name{Tim}{Albes}
-\jobinfo{Associate Researcher at Technical University of Munich}
-\photo{3.cm}{pic.png}
+\mtitle{Research Associate at Technical University of Munich}
+\photo{3.5cm}{pic.png}
 
 \socialinfo{
     \email{my.address@mail.com}
     \smartphone{+49 1xx xxxxxx75}\\
     \linkedin{talbes}
     \github{talbes}\\
-    % \website{www.google.de}{vermillion.ddns.net}
-    \address{Munich, Germany}\\
-    \infos{Born on xx. Month 19xx in Town, Germany}
+    \address{Munich, Germany}
+    \website{https://www.ei.tum.de/cph/team-members/tim-albes/}{ei.tum.de/cph}
+    \vspace{0.75em}\\
+    \infos{Born on X in Y, Germany}
 }
-
-\leftfooter{\textsc{October 2020}}
-\midfooter{\textsc{Curriculum Vitae -- Dr. Tim Albes}}
-\righhtfooter{\thepage /\pageref{LastPage}}
 
 \begin{document}
 
 \maketitle
 
-\makefooter
+\makefooter%
+{\textsc{October 2020}}
+{\textsc{Curriculum Vitae -- Dr. Tim Albes}}
+{\thepage /\pageref{LastPage}}
 
 % profile
-\par{
-Open-minded and curious IT professional with strong analytical and programming skills. Recent PhD graduate in Computational Physics/Statistics with highest distinction; currently developing scientific open-source software and giving online lectures. Strong communication skills due to extensive teaching experience. Seeking opportunities to apply my problem-solving skills in the fields of Software Engineering and Data Science, and within a diverse working environment.
-}
+\begin{profile}
+Open-minded and collaborative IT professional with strong analytical and programming skills. Recent PhD graduate in Computational Physics/Electrical Engineering with highest distinction; currently developing scientific software and giving online lectures. Passionate about technology and eager to learn and develop new skills. Seeking opportunities to apply my problem-solving skills in the fields of Software Engineering Modeling\,\&\,Simulation, Data Science.
+\end{profile}
 
 \sectionTitle{Education}{\faMortarBoard}
+%
+\cventry{10/2014--01/2019}{Dr.\,rer.\,nat., Technical University of Munich}{Thesis: \emph{Kinetic Monte Carlo Simulations of Organic Solar Cells}}{Passed with highest distinction "summa cum laude"}{}
+\cventry{10/2007--05/2014}{Dipl.-Phys. (Univ.), Technical University of Munich}{Specializations: Computational Semiconductor Physics}{Grade 1.5 "very good"}{}
+\cventry{09/2001--07/2007}{Abitur, Gymnasium Adolfinum Bückeburg}{Majors: Mathematics, Physics}{}{}
+%
+%
 \sectionTitle{Experience}{\faRoad} %\faRoad,\faSuitcase,\faGroup,\faDatabase
-\sectionTitle{Skills}{\faTasks}
-\sectionTitle{Languages}{\faGlobe}
-\sectionTitle{Projects}{\faLaptop}
-\sectionTitle{References}{\faQuoteLeft}
+\cventry{02/2020 -- present}{Associate Researcher, Technical University of Munich}{Department of Electrical and Computer Engineering, Professorship Computational Photonics}{\vspace{-0.2em}
+    \begin{itemize}\itemsep2pt
+        \item Preparation and conduction of lectures for 200+ students (Circuit Theory, Numerical Methods)
+        \item Developing scientific software to model quantum cascade lasers (C/C++, Matlab, Fortran)
+        \item Setup and administration of video-recording setup for online lectures
+    \end{itemize}
+}
+\cventry{02/2019 -- 01/2020}{Sabattical, Asia and Europe}{Personal time-off after doctoral thesis to gain international and cultural experience as well as self-development in the IT sector}{\vspace{-0.2em}
+    \begin{itemize}\itemsep2pt
+    \item Traveling Southeast Asia, Middle East, Europe
+    \item Taking classes in Computer Science, Programming, Statistics, Machine Learning
+    \end{itemize}
+}
+\cventry{10/2014--01/2019}{Doctoral Candidate, Technical University of Munich}{Department of Electrical and Computer Engineering, Professorship Simulation of Nanosystems for Energy Conversion}{\vspace{-0.2em}
+\begin{itemize}\itemsep2pt
+\item Conceptualization and implementation of a kinetic Monte Carlo simulation framework (C/C++) of organic solar cells
+\item Finite element simulations of organic solar cells (TiberCAD)
+\item Data analysis and visualization of large datasets (Python)
+\item Presentation on international conferences, e.g., in Boston and Rome
+\item Publication of 10+ articles in reputable peer-reviewed journals and books
+\item Preparation and conduction of courses on Nanotechnology and Computational Methods at TUM and NTU Singapore for four consecutive years
+\item Supervision of undergraduate and graduate student's theses
+\item Setup and administration of Linux servers for scientific simulations
+\end{itemize}
+}
 
-\pagebreak
-Helloe.
+\sectionTitle{Skills}{\faTasks}
+\cvitem{Programming Languages}{5cm}{C/C++, Python, Matlab, Javascript, SQL, R, Java, Fortran}
+\cvitem{Frameworks/Libraries}{5cm}{Numpy/Scipy, Pandas, Flask, jQuery, openCV}
+\cvitem{Development}{5cm}{Linux, Bash, Git, CMake, Docker, \LaTeX}
+\cvitem{TCAD\,/\,FEM}{5cm}{TiberCAD, deal.II, Synopsys Sentraurus}
+\cvitem{Technical knowledge}{5cm}{Monte Carlo methods, stochastic process modeling, data analysis, data visualization}
+% \cvitem{Interpersonal skills}{\thetab}{Problem-solving, effective communication, teamwork, adaptability, distinctive work ethic}
+% \cvitem{Personal traits}{\thetab}{Passionate about technology, eager to learn, appreciation of diversity, independent but collaborative}.
+
+%
+\sectionTitle{Languages}{\faGlobe}
+\cvitem{German}{2cm}{mother tongue}
+\cvitem{English}{2cm}{full professional proficiency}
+
+\sectionTitle{Projects}{\faLaptop}
+\cventry{ }{pyOES -- an oral exam scheduling system}{Manage exam registration slots across multiple lectures via a central database. pyOES drastically reduces the time needed to manage exam schedules.}{\emph{Keywords:} Javascript, Python (Flask), SQL, Docker}
+\cventry{ }{Android app: Sprücheklopfer}{Sound dashboard of memorable phrases from German media and TV.}{\emph{Keywords:} Java, XML}
+\cventry{ }{tym-CV}{A Latex CV Class (available on github)}{\emph{Keywords:} \LaTeX, CMake, git}
+\cventry{ }{Automated darts scoreboard}{Automatically evaluate darts scores by use of computer vision and machine learning.}{\emph{Keywords:} Python (opencv)}
+%
+
+% % % References (Bibliography)
+\sectionTitle{Selected publications}{\faQuoteLeft}
+\nocite{*}
+{
+\renewcommand{\section}[2]{}%
+\bibliographystyle{IEEEtran}
+\bibliography{publications}
+}
+
+\clearpage
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ullamcorper neque sit amet lectus facilisis sed luctus nisl iaculis. Vivamus at neque arcu, sed tempor quam. Curabitur pharetra tincidunt tincidunt. Morbi volutpat feugiat mauris, quis tempor neque vehicula volutpat. Duis tristique justo vel massa fermentum accumsan. Mauris ante elit, feugiat vestibulum tempor eget, eleifend ac ipsum. Donec scelerisque lobortis ipsum eu vestibulum. Pellentesque vel massa at felis accumsan rhoncus.
+
+Albert Einstein discovered that $e=mc^2$ in 1905.
+
 
 \end{document}

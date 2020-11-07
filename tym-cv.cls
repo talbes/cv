@@ -5,16 +5,16 @@
 % \ProcessOptions\relax
 
 % load base class
-\LoadClass[a4paper,11pt]{article}
+\LoadClass[a4paper]{article}
 
 % load packages
 \RequirePackage[utf8]{inputenc}
-\RequirePackage{libertine} %libertine
-\RequirePackage[T1]{fontenc}
+\RequirePackage[scaled]{libertine} %libertine, helvet
+% \RequirePackage[T1]{fontenc}
 \renewcommand\familydefault{\sfdefault}
 \RequirePackage[english]{babel}
 \RequirePackage[cm]{fullpage}
-\RequirePackage[margin=1.5cm]{geometry}
+\RequirePackage[margin=2.0cm]{geometry}
 \RequirePackage{hyperref}
 \RequirePackage{titlesec}
 \RequirePackage{parskip}
@@ -28,6 +28,7 @@
 \RequirePackage{tabularx}
 \RequirePackage{array}
 \RequirePackage{enumitem}
+\RequirePackage{ifthen}
 \RequirePackage{xcolor}
 \definecolor{tym-blue}{RGB}{0,101,189}
 \definecolor{yacolor}{HTML}{000066}
@@ -58,10 +59,10 @@
 
 % rendering
 \newcommand*\idphoto{
-  \tikz\path[fill overzoom image={pic.png}]circle[radius=0.5\linewidth];
+  \tikz\path[fill overzoom image={\@photo},draw]circle[radius=0.5\linewidth];
 }
-% \newcommand\user[2]{\color{\cvcolor}{\Huge\textsc{\textbf{#1\,#2}}}\color{black}}
-\newcommand\user[2]{\color{\cvcolor}{\Huge #1 \textsc{\textbf{#2}}}\color{black}}
+\newcommand\user[2]{\color{\cvcolor}{\Huge\textbf{#1\,#2}}\color{black}}
+% \newcommand\user[2]{\color{\cvcolor}{\Huge #1 \textsc{\textbf{#2}}}\color{black}}
 
 \newcommand{\socialinfo}[1]{\def\@socialinfo{#1}}
 \newcommand{\socialtext}[2]{\mbox{\textcolor{\cvcolor}{#1}\hspace{0.5em}#2\hspace{1em}}}
@@ -77,18 +78,18 @@
 \newcommand*{\website}[2]{\sociallink{\faGlobe}{#1}{#2}}
 \newcommand*{\smartphone}[1]{\socialtext{\faMobilePhone}{#1}}    
 
-% setup section headers
+% setup section headers via titlesec
 \titleformat{\section}{\Large\raggedright}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{2pt}{2pt}
-\newcommand\sectionTitle[2]{\section{\texorpdfstring{\color{\cvcolor}#2\enspace \textsc{#1}}{#1}}}
+\titlespacing{\section}{0pt}{5pt}{7pt}
+\newcommand\sectionTitle[2]{\section{\texorpdfstring{\color{\cvcolor}#2\enspace {#1}}{#1}}}
 
 % define new title
 \makeatletter
 \def\@maketitle{
     \begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}
-        \user{\@firstname}{\@lastname}\\
-        \large{\@mtitle}
-        \bigskip\\
+        \user{\@firstname}{\@lastname}\par
+        \large{\@mtitle}\par
+        \bigskip
         \small{\@socialinfo}
     \end{minipage}
     \begin{minipage}{\@photodiameter}
@@ -106,14 +107,33 @@
     \fancyfoot[R]{#3}
 }
 
-\newcommand*{\cvitem}[4][.05em]{%
+\newcommand*{\cvitem}[4][0.0em]{%
     \noindent%
     \begin{tabularx}{\textwidth}{p{#3} X}
-        {\textbf{#2}} & {#4} 
+        {\textbf{#2:}} & {#4}\\
     \end{tabularx}%
-    \par%\addspace{#1}%\addspace not working, why?
+    \par\addvspace{#1}%
 }
 
+\newcommand*{\cventry}[5][.05em]{%
+    \noindent%
+    \begin{tabularx}{\textwidth}{X r}
+        {\textbf{#3}} & \hfill\textit{{#2}}\\
+        {#4}\\
+        \def\temp{#5}\ifx\temp\empty
+        %
+        \else
+        {#5}
+        \fi
+    \end{tabularx}
+    \par%\addvspace{#1}
+}
+
+\newenvironment{profile}{
+    \par
+}{
+    \par\vspace{0.5em}
+}
 
 % skills environment
 \newenvironment{skills}{%
